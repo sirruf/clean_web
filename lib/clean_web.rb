@@ -45,10 +45,10 @@ module CleanWeb
     require 'nokogiri'
 
     def self.answer(result)
-      doc = Nokogiri::XML(result)
+      doc = Nokogiri::XML(result.body)
       check_result = doc.at('check-spam-result')
       id_tag = check_result.xpath('//id').text
-      Hash({complete: true, id: id_tag, spam: check_result.at('text')['spam-flag']=='yes'})
+      Hash({complete: true, id: id_tag, spam: check_result.at('text')['spam-flag']=='yes', code: result.code})
     end
   end
 
