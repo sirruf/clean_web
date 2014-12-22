@@ -1,6 +1,6 @@
 # CleanWeb
 
-TODO: Write a gem description
+Simple Yandex Clean Web client for Rails
 
 ## Installation
 
@@ -17,8 +17,8 @@ And then execute:
 Install initializer 
 
     clean_web:install
-
-Add API key to initializer
+Get Yandex Clean Web API key [here](https://tech.yandex.ru/cleanweb/).
+Add key to initializer. 
 
 `config/initializers/clean_web.rb`
 
