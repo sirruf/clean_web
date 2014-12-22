@@ -1,7 +1,8 @@
 require 'clean_web/version'
-require 'nokogiri'
 
 module CleanWeb
+  require 'net/http'
+
   class << self
     attr_accessor :configuration
   end
@@ -27,11 +28,7 @@ module CleanWeb
       puts params.inspect
       response = https.request(req)
       if response.code == '200'
-        # noinspection RubyResolve
-        doc = Nokogiri::XML(response.body)
-        check_result = doc.at('check-spam-result')
-        id_tag = check_result.xpath('//id').text
-        Hash({complete: true, id: id_tag, spam: check_result.at('text')['spam-flag']=='yes', code: response.code})
+        XMLParser.answer(response)
       else
         Hash({complete: false, code: response.code})
       end
@@ -41,6 +38,18 @@ module CleanWeb
     end
 
 
+  end
+
+  module XMLParser
+    # noinspection RubyResolve
+    require 'nokogiri'
+
+    def self.answer(result)
+      doc = Nokogiri::XML(result)
+      check_result = doc.at('check-spam-result')
+      id_tag = check_result.xpath('//id').text
+      Hash({complete: true, id: id_tag, spam: check_result.at('text')['spam-flag']=='yes'})
+    end
   end
 
   class Configuration
