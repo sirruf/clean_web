@@ -7,7 +7,7 @@ Simple Yandex Clean Web client for Rails
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'clean_web'
+gem 'clean_web', git: 'https://github.com/sirruf/clean_web.git'
 ```
 
 And then execute:
@@ -29,6 +29,15 @@ end
 ```
 
 ## Usage
+
+Simple usage:
+
+```ruby
+CleanWeb.check(text: 'Test comment', ip: '192.168.1.0') # => {:complete=>true, :id=>"##-XXXXX[]", :spam=>false, :code=>"200"}
+
+```
+
+Check comments: 
 
 `models/comment.rb`
 
