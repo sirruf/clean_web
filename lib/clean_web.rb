@@ -21,11 +21,9 @@ module CleanWeb
       https.use_ssl = false
       params = {key: configuration.api_key}
       params = params.merge({:'body-plain' => text})
-      # noinspection RubyStringKeysInHashInspection
       params = params.merge(options)
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data(params)
-      puts params.inspect
       response = https.request(req)
       if response.code == '200'
         XMLParser.answer(response)
@@ -41,7 +39,6 @@ module CleanWeb
   end
 
   module XMLParser
-    # noinspection RubyResolve
     require 'nokogiri'
 
     def self.answer(result)
