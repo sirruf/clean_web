@@ -1,4 +1,5 @@
 require 'clean_web/version'
+require 'nokogiri'
 
 module CleanWeb
   class << self
