@@ -18,6 +18,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'rails', '~> 4.0'
+  spec.add_dependency 'rails', '~> 3.0'
   spec.add_dependency 'nokogiri', '~> 1.6'
 end
